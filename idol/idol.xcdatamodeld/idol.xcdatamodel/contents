@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
+    <entity name="IdolEntity" representedClassName=".IdolEntity" syncable="YES">
+        <attribute name="button1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="host" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="portnum" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="IdolEntity" positionX="-54" positionY="-9" width="128" height="135"/>
+    </elements>
+</model>

@@ -1,0 +1,773 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB6321AD1C17F0C000F8B39C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6321AC1C17F0C000F8B39C /* AppDelegate.swift */; };
+		DB6321AF1C17F0C000F8B39C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6321AE1C17F0C000F8B39C /* ViewController.swift */; };
+		DB6321B21C17F0C000F8B39C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6321B01C17F0C000F8B39C /* Main.storyboard */; };
+		DB6321B41C17F0C000F8B39C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB6321B31C17F0C000F8B39C /* Assets.xcassets */; };
+		DB6321B71C17F0C000F8B39C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6321B51C17F0C000F8B39C /* LaunchScreen.storyboard */; };
+		DB6321C21C17F0C000F8B39C /* idolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6321C11C17F0C000F8B39C /* idolTests.swift */; };
+		DB6321CD1C17F0C000F8B39C /* idolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6321CC1C17F0C000F8B39C /* idolUITests.swift */; };
+		DB6321DD1C17F18900F8B39C /* ysocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6321DC1C17F18900F8B39C /* ysocket.swift */; };
+		DB6321DF1C17F20200F8B39C /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6321DE1C17F20200F8B39C /* ytcpsocket.swift */; };
+		DB6321E11C17F28600F8B39C /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = DB6321E01C17F28600F8B39C /* ytcpsocket.c */; };
+		DB67477E1C1FCBCA005DE207 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB67477D1C1FCBCA005DE207 /* ViewController2.swift */; };
+		DB6747801C1FCBE6005DE207 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB67477F1C1FCBE6005DE207 /* ViewController3.swift */; };
+		DB6747891C1FFCF6005DE207 /* IdolEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6747871C1FFCF6005DE207 /* IdolEntity+CoreDataProperties.swift */; };
+		DB67478A1C1FFCF6005DE207 /* IdolEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6747881C1FFCF6005DE207 /* IdolEntity.swift */; };
+		DB85CADF1C29749D00EA5FD5 /* 次卧窗帘-cha.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAB71C29749D00EA5FD5 /* 次卧窗帘-cha.png */; };
+		DB85CAE01C29749D00EA5FD5 /* 次卧窗帘0.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAB81C29749D00EA5FD5 /* 次卧窗帘0.png */; };
+		DB85CAE11C29749D00EA5FD5 /* 次卧窗帘10.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAB91C29749D00EA5FD5 /* 次卧窗帘10.png */; };
+		DB85CAE21C29749D00EA5FD5 /* 次卧窗帘20.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CABA1C29749D00EA5FD5 /* 次卧窗帘20.png */; };
+		DB85CAE31C29749D00EA5FD5 /* 次卧窗帘30.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CABB1C29749D00EA5FD5 /* 次卧窗帘30.png */; };
+		DB85CAE41C29749D00EA5FD5 /* 次卧窗帘40.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CABC1C29749D00EA5FD5 /* 次卧窗帘40.png */; };
+		DB85CAE51C29749D00EA5FD5 /* 次卧窗帘50.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CABD1C29749D00EA5FD5 /* 次卧窗帘50.png */; };
+		DB85CAE61C29749D00EA5FD5 /* 次卧窗帘60.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CABE1C29749D00EA5FD5 /* 次卧窗帘60.png */; };
+		DB85CAE71C29749D00EA5FD5 /* 次卧窗帘70.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CABF1C29749D00EA5FD5 /* 次卧窗帘70.png */; };
+		DB85CAE81C29749D00EA5FD5 /* 次卧窗帘80.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAC01C29749D00EA5FD5 /* 次卧窗帘80.png */; };
+		DB85CAE91C29749D00EA5FD5 /* 次卧窗帘90.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAC11C29749D00EA5FD5 /* 次卧窗帘90.png */; };
+		DB85CAEA1C29749D00EA5FD5 /* 次卧窗帘100.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAC21C29749D00EA5FD5 /* 次卧窗帘100.png */; };
+		DB85CAEB1C29749D00EA5FD5 /* 客厅窗帘-cha.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAC31C29749D00EA5FD5 /* 客厅窗帘-cha.png */; };
+		DB85CAEC1C29749D00EA5FD5 /* 客厅窗帘0.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAC41C29749D00EA5FD5 /* 客厅窗帘0.png */; };
+		DB85CAED1C29749D00EA5FD5 /* 客厅窗帘10.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAC51C29749D00EA5FD5 /* 客厅窗帘10.png */; };
+		DB85CAEE1C29749D00EA5FD5 /* 客厅窗帘20.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAC61C29749D00EA5FD5 /* 客厅窗帘20.png */; };
+		DB85CAEF1C29749D00EA5FD5 /* 客厅窗帘30.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAC71C29749D00EA5FD5 /* 客厅窗帘30.png */; };
+		DB85CAF01C29749D00EA5FD5 /* 客厅窗帘40.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAC81C29749D00EA5FD5 /* 客厅窗帘40.png */; };
+		DB85CAF11C29749D00EA5FD5 /* 客厅窗帘50.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAC91C29749D00EA5FD5 /* 客厅窗帘50.png */; };
+		DB85CAF21C29749D00EA5FD5 /* 客厅窗帘60.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CACA1C29749D00EA5FD5 /* 客厅窗帘60.png */; };
+		DB85CAF31C29749D00EA5FD5 /* 客厅窗帘70.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CACB1C29749D00EA5FD5 /* 客厅窗帘70.png */; };
+		DB85CAF41C29749D00EA5FD5 /* 客厅窗帘80.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CACC1C29749D00EA5FD5 /* 客厅窗帘80.png */; };
+		DB85CAF51C29749D00EA5FD5 /* 客厅窗帘90.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CACD1C29749D00EA5FD5 /* 客厅窗帘90.png */; };
+		DB85CAF61C29749D00EA5FD5 /* 客厅窗帘100.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CACE1C29749D00EA5FD5 /* 客厅窗帘100.png */; };
+		DB85CAF71C29749D00EA5FD5 /* 主卧窗帘-cha.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CACF1C29749D00EA5FD5 /* 主卧窗帘-cha.png */; };
+		DB85CAF81C29749D00EA5FD5 /* 主卧窗帘0.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAD01C29749D00EA5FD5 /* 主卧窗帘0.png */; };
+		DB85CAF91C29749D00EA5FD5 /* 主卧窗帘10.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAD11C29749D00EA5FD5 /* 主卧窗帘10.png */; };
+		DB85CAFA1C29749D00EA5FD5 /* 主卧窗帘20.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAD21C29749D00EA5FD5 /* 主卧窗帘20.png */; };
+		DB85CAFB1C29749D00EA5FD5 /* 主卧窗帘30.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAD31C29749D00EA5FD5 /* 主卧窗帘30.png */; };
+		DB85CAFC1C29749D00EA5FD5 /* 主卧窗帘40.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAD41C29749D00EA5FD5 /* 主卧窗帘40.png */; };
+		DB85CAFD1C29749D00EA5FD5 /* 主卧窗帘50.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAD51C29749D00EA5FD5 /* 主卧窗帘50.png */; };
+		DB85CAFE1C29749D00EA5FD5 /* 主卧窗帘60.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAD61C29749D00EA5FD5 /* 主卧窗帘60.png */; };
+		DB85CAFF1C29749D00EA5FD5 /* 主卧窗帘70.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAD71C29749D00EA5FD5 /* 主卧窗帘70.png */; };
+		DB85CB001C29749D00EA5FD5 /* 主卧窗帘80.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAD81C29749D00EA5FD5 /* 主卧窗帘80.png */; };
+		DB85CB011C29749D00EA5FD5 /* 主卧窗帘90.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CAD91C29749D00EA5FD5 /* 主卧窗帘90.png */; };
+		DB85CB021C29749D00EA5FD5 /* 主卧窗帘100.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CADA1C29749D00EA5FD5 /* 主卧窗帘100.png */; };
+		DB85CB031C29749D00EA5FD5 /* close2-cha.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CADB1C29749D00EA5FD5 /* close2-cha.png */; };
+		DB85CB041C29749D00EA5FD5 /* close2.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CADC1C29749D00EA5FD5 /* close2.png */; };
+		DB85CB051C29749D00EA5FD5 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CADD1C29749D00EA5FD5 /* home.png */; };
+		DB85CB061C29749D00EA5FD5 /* open2.png in Resources */ = {isa = PBXBuildFile; fileRef = DB85CADE1C29749D00EA5FD5 /* open2.png */; };
+		DB8D561E1C1977E6001C4E06 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB8D561D1C1977E6001C4E06 /* CoreData.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DB8D56211C197921001C4E06 /* idol.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB8D561F1C197921001C4E06 /* idol.xcdatamodeld */; };
+		DBFA1A9D1C299111003F8124 /* 29-2.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA1A971C299111003F8124 /* 29-2.png */; };
+		DBFA1A9E1C299111003F8124 /* 29-3.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA1A981C299111003F8124 /* 29-3.png */; };
+		DBFA1A9F1C299111003F8124 /* 40-2.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA1A991C299111003F8124 /* 40-2.png */; };
+		DBFA1AA01C299111003F8124 /* 40-3.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA1A9A1C299111003F8124 /* 40-3.png */; };
+		DBFA1AA11C299111003F8124 /* 60-2.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA1A9B1C299111003F8124 /* 60-2.png */; };
+		DBFA1AA21C299111003F8124 /* 60-3.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA1A9C1C299111003F8124 /* 60-3.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB6321BE1C17F0C000F8B39C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB6321A11C17F0C000F8B39C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB6321A81C17F0C000F8B39C;
+			remoteInfo = idol;
+		};
+		DB6321C91C17F0C000F8B39C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB6321A11C17F0C000F8B39C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB6321A81C17F0C000F8B39C;
+			remoteInfo = idol;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DB6321A91C17F0C000F8B39C /* idol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = idol.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB6321AC1C17F0C000F8B39C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DB6321AE1C17F0C000F8B39C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DB6321B11C17F0C000F8B39C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DB6321B31C17F0C000F8B39C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB6321B61C17F0C000F8B39C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DB6321B81C17F0C000F8B39C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB6321BD1C17F0C000F8B39C /* idolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = idolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB6321C11C17F0C000F8B39C /* idolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = idolTests.swift; sourceTree = "<group>"; };
+		DB6321C31C17F0C000F8B39C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB6321C81C17F0C000F8B39C /* idolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = idolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB6321CC1C17F0C000F8B39C /* idolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = idolUITests.swift; sourceTree = "<group>"; };
+		DB6321CE1C17F0C000F8B39C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB6321DC1C17F18900F8B39C /* ysocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ysocket.swift; sourceTree = "<group>"; };
+		DB6321DE1C17F20200F8B39C /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ytcpsocket.swift; sourceTree = "<group>"; };
+		DB6321E01C17F28600F8B39C /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ytcpsocket.c; sourceTree = "<group>"; };
+		DB67477D1C1FCBCA005DE207 /* ViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		DB67477F1C1FCBE6005DE207 /* ViewController3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
+		DB6747871C1FFCF6005DE207 /* IdolEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IdolEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DB6747881C1FFCF6005DE207 /* IdolEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdolEntity.swift; sourceTree = "<group>"; };
+		DB85CAB71C29749D00EA5FD5 /* 次卧窗帘-cha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘-cha.png"; sourceTree = "<group>"; };
+		DB85CAB81C29749D00EA5FD5 /* 次卧窗帘0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘0.png"; sourceTree = "<group>"; };
+		DB85CAB91C29749D00EA5FD5 /* 次卧窗帘10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘10.png"; sourceTree = "<group>"; };
+		DB85CABA1C29749D00EA5FD5 /* 次卧窗帘20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘20.png"; sourceTree = "<group>"; };
+		DB85CABB1C29749D00EA5FD5 /* 次卧窗帘30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘30.png"; sourceTree = "<group>"; };
+		DB85CABC1C29749D00EA5FD5 /* 次卧窗帘40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘40.png"; sourceTree = "<group>"; };
+		DB85CABD1C29749D00EA5FD5 /* 次卧窗帘50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘50.png"; sourceTree = "<group>"; };
+		DB85CABE1C29749D00EA5FD5 /* 次卧窗帘60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘60.png"; sourceTree = "<group>"; };
+		DB85CABF1C29749D00EA5FD5 /* 次卧窗帘70.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘70.png"; sourceTree = "<group>"; };
+		DB85CAC01C29749D00EA5FD5 /* 次卧窗帘80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘80.png"; sourceTree = "<group>"; };
+		DB85CAC11C29749D00EA5FD5 /* 次卧窗帘90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘90.png"; sourceTree = "<group>"; };
+		DB85CAC21C29749D00EA5FD5 /* 次卧窗帘100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "次卧窗帘100.png"; sourceTree = "<group>"; };
+		DB85CAC31C29749D00EA5FD5 /* 客厅窗帘-cha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘-cha.png"; sourceTree = "<group>"; };
+		DB85CAC41C29749D00EA5FD5 /* 客厅窗帘0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘0.png"; sourceTree = "<group>"; };
+		DB85CAC51C29749D00EA5FD5 /* 客厅窗帘10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘10.png"; sourceTree = "<group>"; };
+		DB85CAC61C29749D00EA5FD5 /* 客厅窗帘20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘20.png"; sourceTree = "<group>"; };
+		DB85CAC71C29749D00EA5FD5 /* 客厅窗帘30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘30.png"; sourceTree = "<group>"; };
+		DB85CAC81C29749D00EA5FD5 /* 客厅窗帘40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘40.png"; sourceTree = "<group>"; };
+		DB85CAC91C29749D00EA5FD5 /* 客厅窗帘50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘50.png"; sourceTree = "<group>"; };
+		DB85CACA1C29749D00EA5FD5 /* 客厅窗帘60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘60.png"; sourceTree = "<group>"; };
+		DB85CACB1C29749D00EA5FD5 /* 客厅窗帘70.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘70.png"; sourceTree = "<group>"; };
+		DB85CACC1C29749D00EA5FD5 /* 客厅窗帘80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘80.png"; sourceTree = "<group>"; };
+		DB85CACD1C29749D00EA5FD5 /* 客厅窗帘90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘90.png"; sourceTree = "<group>"; };
+		DB85CACE1C29749D00EA5FD5 /* 客厅窗帘100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客厅窗帘100.png"; sourceTree = "<group>"; };
+		DB85CACF1C29749D00EA5FD5 /* 主卧窗帘-cha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘-cha.png"; sourceTree = "<group>"; };
+		DB85CAD01C29749D00EA5FD5 /* 主卧窗帘0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘0.png"; sourceTree = "<group>"; };
+		DB85CAD11C29749D00EA5FD5 /* 主卧窗帘10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘10.png"; sourceTree = "<group>"; };
+		DB85CAD21C29749D00EA5FD5 /* 主卧窗帘20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘20.png"; sourceTree = "<group>"; };
+		DB85CAD31C29749D00EA5FD5 /* 主卧窗帘30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘30.png"; sourceTree = "<group>"; };
+		DB85CAD41C29749D00EA5FD5 /* 主卧窗帘40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘40.png"; sourceTree = "<group>"; };
+		DB85CAD51C29749D00EA5FD5 /* 主卧窗帘50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘50.png"; sourceTree = "<group>"; };
+		DB85CAD61C29749D00EA5FD5 /* 主卧窗帘60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘60.png"; sourceTree = "<group>"; };
+		DB85CAD71C29749D00EA5FD5 /* 主卧窗帘70.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘70.png"; sourceTree = "<group>"; };
+		DB85CAD81C29749D00EA5FD5 /* 主卧窗帘80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘80.png"; sourceTree = "<group>"; };
+		DB85CAD91C29749D00EA5FD5 /* 主卧窗帘90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘90.png"; sourceTree = "<group>"; };
+		DB85CADA1C29749D00EA5FD5 /* 主卧窗帘100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主卧窗帘100.png"; sourceTree = "<group>"; };
+		DB85CADB1C29749D00EA5FD5 /* close2-cha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close2-cha.png"; sourceTree = "<group>"; };
+		DB85CADC1C29749D00EA5FD5 /* close2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close2.png; sourceTree = "<group>"; };
+		DB85CADD1C29749D00EA5FD5 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		DB85CADE1C29749D00EA5FD5 /* open2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open2.png; sourceTree = "<group>"; };
+		DB8D561D1C1977E6001C4E06 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DB8D56201C197921001C4E06 /* idol.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = idol.xcdatamodel; sourceTree = "<group>"; };
+		DBFA1A971C299111003F8124 /* 29-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "29-2.png"; sourceTree = "<group>"; };
+		DBFA1A981C299111003F8124 /* 29-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "29-3.png"; sourceTree = "<group>"; };
+		DBFA1A991C299111003F8124 /* 40-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "40-2.png"; sourceTree = "<group>"; };
+		DBFA1A9A1C299111003F8124 /* 40-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "40-3.png"; sourceTree = "<group>"; };
+		DBFA1A9B1C299111003F8124 /* 60-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "60-2.png"; sourceTree = "<group>"; };
+		DBFA1A9C1C299111003F8124 /* 60-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "60-3.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB6321A61C17F0C000F8B39C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB8D561E1C1977E6001C4E06 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6321BA1C17F0C000F8B39C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6321C51C17F0C000F8B39C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB6321A01C17F0C000F8B39C = {
+			isa = PBXGroup;
+			children = (
+				DB8D561D1C1977E6001C4E06 /* CoreData.framework */,
+				DB6321AB1C17F0C000F8B39C /* idol */,
+				DB6321C01C17F0C000F8B39C /* idolTests */,
+				DB6321CB1C17F0C000F8B39C /* idolUITests */,
+				DB6321AA1C17F0C000F8B39C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB6321AA1C17F0C000F8B39C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB6321A91C17F0C000F8B39C /* idol.app */,
+				DB6321BD1C17F0C000F8B39C /* idolTests.xctest */,
+				DB6321C81C17F0C000F8B39C /* idolUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB6321AB1C17F0C000F8B39C /* idol */ = {
+			isa = PBXGroup;
+			children = (
+				DBFA1A961C299101003F8124 /* icon */,
+				DB85CAB61C29748800EA5FD5 /* images */,
+				DB6321E01C17F28600F8B39C /* ytcpsocket.c */,
+				DB6321DE1C17F20200F8B39C /* ytcpsocket.swift */,
+				DB6321DC1C17F18900F8B39C /* ysocket.swift */,
+				DB6321AC1C17F0C000F8B39C /* AppDelegate.swift */,
+				DB6321AE1C17F0C000F8B39C /* ViewController.swift */,
+				DB67477D1C1FCBCA005DE207 /* ViewController2.swift */,
+				DB67477F1C1FCBE6005DE207 /* ViewController3.swift */,
+				DB6321B01C17F0C000F8B39C /* Main.storyboard */,
+				DB6321B31C17F0C000F8B39C /* Assets.xcassets */,
+				DB6321B51C17F0C000F8B39C /* LaunchScreen.storyboard */,
+				DB6321B81C17F0C000F8B39C /* Info.plist */,
+				DB8D561F1C197921001C4E06 /* idol.xcdatamodeld */,
+				DB6747871C1FFCF6005DE207 /* IdolEntity+CoreDataProperties.swift */,
+				DB6747881C1FFCF6005DE207 /* IdolEntity.swift */,
+			);
+			path = idol;
+			sourceTree = "<group>";
+		};
+		DB6321C01C17F0C000F8B39C /* idolTests */ = {
+			isa = PBXGroup;
+			children = (
+				DB6321C11C17F0C000F8B39C /* idolTests.swift */,
+				DB6321C31C17F0C000F8B39C /* Info.plist */,
+			);
+			path = idolTests;
+			sourceTree = "<group>";
+		};
+		DB6321CB1C17F0C000F8B39C /* idolUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DB6321CC1C17F0C000F8B39C /* idolUITests.swift */,
+				DB6321CE1C17F0C000F8B39C /* Info.plist */,
+			);
+			path = idolUITests;
+			sourceTree = "<group>";
+		};
+		DB85CAB61C29748800EA5FD5 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				DB85CAB71C29749D00EA5FD5 /* 次卧窗帘-cha.png */,
+				DB85CAB81C29749D00EA5FD5 /* 次卧窗帘0.png */,
+				DB85CAB91C29749D00EA5FD5 /* 次卧窗帘10.png */,
+				DB85CABA1C29749D00EA5FD5 /* 次卧窗帘20.png */,
+				DB85CABB1C29749D00EA5FD5 /* 次卧窗帘30.png */,
+				DB85CABC1C29749D00EA5FD5 /* 次卧窗帘40.png */,
+				DB85CABD1C29749D00EA5FD5 /* 次卧窗帘50.png */,
+				DB85CABE1C29749D00EA5FD5 /* 次卧窗帘60.png */,
+				DB85CABF1C29749D00EA5FD5 /* 次卧窗帘70.png */,
+				DB85CAC01C29749D00EA5FD5 /* 次卧窗帘80.png */,
+				DB85CAC11C29749D00EA5FD5 /* 次卧窗帘90.png */,
+				DB85CAC21C29749D00EA5FD5 /* 次卧窗帘100.png */,
+				DB85CAC31C29749D00EA5FD5 /* 客厅窗帘-cha.png */,
+				DB85CAC41C29749D00EA5FD5 /* 客厅窗帘0.png */,
+				DB85CAC51C29749D00EA5FD5 /* 客厅窗帘10.png */,
+				DB85CAC61C29749D00EA5FD5 /* 客厅窗帘20.png */,
+				DB85CAC71C29749D00EA5FD5 /* 客厅窗帘30.png */,
+				DB85CAC81C29749D00EA5FD5 /* 客厅窗帘40.png */,
+				DB85CAC91C29749D00EA5FD5 /* 客厅窗帘50.png */,
+				DB85CACA1C29749D00EA5FD5 /* 客厅窗帘60.png */,
+				DB85CACB1C29749D00EA5FD5 /* 客厅窗帘70.png */,
+				DB85CACC1C29749D00EA5FD5 /* 客厅窗帘80.png */,
+				DB85CACD1C29749D00EA5FD5 /* 客厅窗帘90.png */,
+				DB85CACE1C29749D00EA5FD5 /* 客厅窗帘100.png */,
+				DB85CACF1C29749D00EA5FD5 /* 主卧窗帘-cha.png */,
+				DB85CAD01C29749D00EA5FD5 /* 主卧窗帘0.png */,
+				DB85CAD11C29749D00EA5FD5 /* 主卧窗帘10.png */,
+				DB85CAD21C29749D00EA5FD5 /* 主卧窗帘20.png */,
+				DB85CAD31C29749D00EA5FD5 /* 主卧窗帘30.png */,
+				DB85CAD41C29749D00EA5FD5 /* 主卧窗帘40.png */,
+				DB85CAD51C29749D00EA5FD5 /* 主卧窗帘50.png */,
+				DB85CAD61C29749D00EA5FD5 /* 主卧窗帘60.png */,
+				DB85CAD71C29749D00EA5FD5 /* 主卧窗帘70.png */,
+				DB85CAD81C29749D00EA5FD5 /* 主卧窗帘80.png */,
+				DB85CAD91C29749D00EA5FD5 /* 主卧窗帘90.png */,
+				DB85CADA1C29749D00EA5FD5 /* 主卧窗帘100.png */,
+				DB85CADB1C29749D00EA5FD5 /* close2-cha.png */,
+				DB85CADC1C29749D00EA5FD5 /* close2.png */,
+				DB85CADD1C29749D00EA5FD5 /* home.png */,
+				DB85CADE1C29749D00EA5FD5 /* open2.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		DBFA1A961C299101003F8124 /* icon */ = {
+			isa = PBXGroup;
+			children = (
+				DBFA1A971C299111003F8124 /* 29-2.png */,
+				DBFA1A981C299111003F8124 /* 29-3.png */,
+				DBFA1A991C299111003F8124 /* 40-2.png */,
+				DBFA1A9A1C299111003F8124 /* 40-3.png */,
+				DBFA1A9B1C299111003F8124 /* 60-2.png */,
+				DBFA1A9C1C299111003F8124 /* 60-3.png */,
+			);
+			name = icon;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB6321A81C17F0C000F8B39C /* idol */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB6321D11C17F0C000F8B39C /* Build configuration list for PBXNativeTarget "idol" */;
+			buildPhases = (
+				DB6321A51C17F0C000F8B39C /* Sources */,
+				DB6321A61C17F0C000F8B39C /* Frameworks */,
+				DB6321A71C17F0C000F8B39C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = idol;
+			productName = idol;
+			productReference = DB6321A91C17F0C000F8B39C /* idol.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DB6321BC1C17F0C000F8B39C /* idolTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB6321D41C17F0C000F8B39C /* Build configuration list for PBXNativeTarget "idolTests" */;
+			buildPhases = (
+				DB6321B91C17F0C000F8B39C /* Sources */,
+				DB6321BA1C17F0C000F8B39C /* Frameworks */,
+				DB6321BB1C17F0C000F8B39C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB6321BF1C17F0C000F8B39C /* PBXTargetDependency */,
+			);
+			name = idolTests;
+			productName = idolTests;
+			productReference = DB6321BD1C17F0C000F8B39C /* idolTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DB6321C71C17F0C000F8B39C /* idolUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB6321D71C17F0C000F8B39C /* Build configuration list for PBXNativeTarget "idolUITests" */;
+			buildPhases = (
+				DB6321C41C17F0C000F8B39C /* Sources */,
+				DB6321C51C17F0C000F8B39C /* Frameworks */,
+				DB6321C61C17F0C000F8B39C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB6321CA1C17F0C000F8B39C /* PBXTargetDependency */,
+			);
+			name = idolUITests;
+			productName = idolUITests;
+			productReference = DB6321C81C17F0C000F8B39C /* idolUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB6321A11C17F0C000F8B39C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "吴汪洋";
+				TargetAttributes = {
+					DB6321A81C17F0C000F8B39C = {
+						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = Y2UT2SAJGA;
+					};
+					DB6321BC1C17F0C000F8B39C = {
+						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = Y2UT2SAJGA;
+						TestTargetID = DB6321A81C17F0C000F8B39C;
+					};
+					DB6321C71C17F0C000F8B39C = {
+						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = Y2UT2SAJGA;
+						TestTargetID = DB6321A81C17F0C000F8B39C;
+					};
+				};
+			};
+			buildConfigurationList = DB6321A41C17F0C000F8B39C /* Build configuration list for PBXProject "idol" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DB6321A01C17F0C000F8B39C;
+			productRefGroup = DB6321AA1C17F0C000F8B39C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB6321A81C17F0C000F8B39C /* idol */,
+				DB6321BC1C17F0C000F8B39C /* idolTests */,
+				DB6321C71C17F0C000F8B39C /* idolUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB6321A71C17F0C000F8B39C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBFA1AA11C299111003F8124 /* 60-2.png in Resources */,
+				DB85CAF51C29749D00EA5FD5 /* 客厅窗帘90.png in Resources */,
+				DB85CAFE1C29749D00EA5FD5 /* 主卧窗帘60.png in Resources */,
+				DB85CB051C29749D00EA5FD5 /* home.png in Resources */,
+				DB85CB031C29749D00EA5FD5 /* close2-cha.png in Resources */,
+				DB6321B71C17F0C000F8B39C /* LaunchScreen.storyboard in Resources */,
+				DB85CAE61C29749D00EA5FD5 /* 次卧窗帘60.png in Resources */,
+				DB85CAF11C29749D00EA5FD5 /* 客厅窗帘50.png in Resources */,
+				DB6321B41C17F0C000F8B39C /* Assets.xcassets in Resources */,
+				DB85CAE71C29749D00EA5FD5 /* 次卧窗帘70.png in Resources */,
+				DB6321B21C17F0C000F8B39C /* Main.storyboard in Resources */,
+				DB85CAE91C29749D00EA5FD5 /* 次卧窗帘90.png in Resources */,
+				DBFA1AA21C299111003F8124 /* 60-3.png in Resources */,
+				DB85CB061C29749D00EA5FD5 /* open2.png in Resources */,
+				DB85CB011C29749D00EA5FD5 /* 主卧窗帘90.png in Resources */,
+				DBFA1A9D1C299111003F8124 /* 29-2.png in Resources */,
+				DB85CAE11C29749D00EA5FD5 /* 次卧窗帘10.png in Resources */,
+				DB85CAE01C29749D00EA5FD5 /* 次卧窗帘0.png in Resources */,
+				DB85CB001C29749D00EA5FD5 /* 主卧窗帘80.png in Resources */,
+				DB85CAE81C29749D00EA5FD5 /* 次卧窗帘80.png in Resources */,
+				DB85CAF91C29749D00EA5FD5 /* 主卧窗帘10.png in Resources */,
+				DB85CAFA1C29749D00EA5FD5 /* 主卧窗帘20.png in Resources */,
+				DB85CAF41C29749D00EA5FD5 /* 客厅窗帘80.png in Resources */,
+				DB85CAE21C29749D00EA5FD5 /* 次卧窗帘20.png in Resources */,
+				DB85CB021C29749D00EA5FD5 /* 主卧窗帘100.png in Resources */,
+				DB85CAEF1C29749D00EA5FD5 /* 客厅窗帘30.png in Resources */,
+				DB85CAF81C29749D00EA5FD5 /* 主卧窗帘0.png in Resources */,
+				DB85CAFB1C29749D00EA5FD5 /* 主卧窗帘30.png in Resources */,
+				DB85CAEA1C29749D00EA5FD5 /* 次卧窗帘100.png in Resources */,
+				DBFA1A9E1C299111003F8124 /* 29-3.png in Resources */,
+				DB85CAE41C29749D00EA5FD5 /* 次卧窗帘40.png in Resources */,
+				DB85CAED1C29749D00EA5FD5 /* 客厅窗帘10.png in Resources */,
+				DB85CAF21C29749D00EA5FD5 /* 客厅窗帘60.png in Resources */,
+				DB85CAEC1C29749D00EA5FD5 /* 客厅窗帘0.png in Resources */,
+				DBFA1A9F1C299111003F8124 /* 40-2.png in Resources */,
+				DB85CAFD1C29749D00EA5FD5 /* 主卧窗帘50.png in Resources */,
+				DB85CB041C29749D00EA5FD5 /* close2.png in Resources */,
+				DB85CADF1C29749D00EA5FD5 /* 次卧窗帘-cha.png in Resources */,
+				DB85CAF31C29749D00EA5FD5 /* 客厅窗帘70.png in Resources */,
+				DB85CAE31C29749D00EA5FD5 /* 次卧窗帘30.png in Resources */,
+				DB85CAFC1C29749D00EA5FD5 /* 主卧窗帘40.png in Resources */,
+				DB85CAFF1C29749D00EA5FD5 /* 主卧窗帘70.png in Resources */,
+				DB85CAF61C29749D00EA5FD5 /* 客厅窗帘100.png in Resources */,
+				DB85CAEB1C29749D00EA5FD5 /* 客厅窗帘-cha.png in Resources */,
+				DB85CAF01C29749D00EA5FD5 /* 客厅窗帘40.png in Resources */,
+				DB85CAF71C29749D00EA5FD5 /* 主卧窗帘-cha.png in Resources */,
+				DBFA1AA01C299111003F8124 /* 40-3.png in Resources */,
+				DB85CAE51C29749D00EA5FD5 /* 次卧窗帘50.png in Resources */,
+				DB85CAEE1C29749D00EA5FD5 /* 客厅窗帘20.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6321BB1C17F0C000F8B39C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6321C61C17F0C000F8B39C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB6321A51C17F0C000F8B39C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB67478A1C1FFCF6005DE207 /* IdolEntity.swift in Sources */,
+				DB6747801C1FCBE6005DE207 /* ViewController3.swift in Sources */,
+				DB6321DF1C17F20200F8B39C /* ytcpsocket.swift in Sources */,
+				DB67477E1C1FCBCA005DE207 /* ViewController2.swift in Sources */,
+				DB6321DD1C17F18900F8B39C /* ysocket.swift in Sources */,
+				DB6747891C1FFCF6005DE207 /* IdolEntity+CoreDataProperties.swift in Sources */,
+				DB6321AF1C17F0C000F8B39C /* ViewController.swift in Sources */,
+				DB8D56211C197921001C4E06 /* idol.xcdatamodeld in Sources */,
+				DB6321AD1C17F0C000F8B39C /* AppDelegate.swift in Sources */,
+				DB6321E11C17F28600F8B39C /* ytcpsocket.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6321B91C17F0C000F8B39C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB6321C21C17F0C000F8B39C /* idolTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6321C41C17F0C000F8B39C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB6321CD1C17F0C000F8B39C /* idolUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB6321BF1C17F0C000F8B39C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB6321A81C17F0C000F8B39C /* idol */;
+			targetProxy = DB6321BE1C17F0C000F8B39C /* PBXContainerItemProxy */;
+		};
+		DB6321CA1C17F0C000F8B39C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB6321A81C17F0C000F8B39C /* idol */;
+			targetProxy = DB6321C91C17F0C000F8B39C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DB6321B01C17F0C000F8B39C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB6321B11C17F0C000F8B39C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DB6321B51C17F0C000F8B39C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB6321B61C17F0C000F8B39C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DB6321CF1C17F0C000F8B39C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DB6321D01C17F0C000F8B39C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB6321D21C17F0C000F8B39C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = idol/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = a.idol2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DB6321D31C17F0C000F8B39C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = idol/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = a.idol2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DB6321D51C17F0C000F8B39C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = idolTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = a.idolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/idol.app/idol";
+			};
+			name = Debug;
+		};
+		DB6321D61C17F0C000F8B39C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = idolTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = a.idolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/idol.app/idol";
+			};
+			name = Release;
+		};
+		DB6321D81C17F0C000F8B39C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = idolUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = a.idolUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = idol;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		DB6321D91C17F0C000F8B39C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = idolUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = a.idolUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = idol;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB6321A41C17F0C000F8B39C /* Build configuration list for PBXProject "idol" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB6321CF1C17F0C000F8B39C /* Debug */,
+				DB6321D01C17F0C000F8B39C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB6321D11C17F0C000F8B39C /* Build configuration list for PBXNativeTarget "idol" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB6321D21C17F0C000F8B39C /* Debug */,
+				DB6321D31C17F0C000F8B39C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB6321D41C17F0C000F8B39C /* Build configuration list for PBXNativeTarget "idolTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB6321D51C17F0C000F8B39C /* Debug */,
+				DB6321D61C17F0C000F8B39C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB6321D71C17F0C000F8B39C /* Build configuration list for PBXNativeTarget "idolUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB6321D81C17F0C000F8B39C /* Debug */,
+				DB6321D91C17F0C000F8B39C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DB8D561F1C197921001C4E06 /* idol.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DB8D56201C197921001C4E06 /* idol.xcdatamodel */,
+			);
+			currentVersion = DB8D56201C197921001C4E06 /* idol.xcdatamodel */;
+			path = idol.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = DB6321A11C17F0C000F8B39C /* Project object */;
+}
