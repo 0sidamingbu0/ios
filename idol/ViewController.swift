@@ -297,7 +297,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refresh()
-        
+        sendheart()
         //alertreconnect = UIAlertController(title: "", message: "网络连接失败！", preferredStyle: UIAlertControllerStyle.Alert)
         //alertreconnect?.addAction(reconnect)
         //alertreconnect?.addAction(cancel)
@@ -367,7 +367,7 @@ class ViewController: UIViewController {
         refresh()
         
         //zhuye_ai.startAnimating()
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "updateTimer:", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "updateTimer:", userInfo: nil, repeats: true)
         //print(client.port)
     }
     
@@ -376,7 +376,10 @@ class ViewController: UIViewController {
         //isTimering = !isTimering
         
         if isTimering {
-            sendheart()
+            if(!isSended){
+                sendheart()
+            }
+            isSended = false
         }
         
     }
@@ -397,68 +400,28 @@ class ViewController: UIViewController {
         let seg:UISegmentedControl = sender as! UISegmentedControl
         switch seg.selectedSegmentIndex{
             case 0:
-                let ii:[UInt8] = [0xaa,1,0]
-                isSending = true
                 isSended = true
                 isRunningAi = true
-                let (_,msg)=client.send(data:ii)
-                if msg == "socket not open"{
-                    isconnected = false
-                    self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                }else if msg == "send error" {
-                    isconnected = false
-                    self.presentViewController(alertresend!, animated: true, completion: nil)
-                }
-                isSending = false
+                sendpost("MODE",action1:0)
             break
             
             case 1:
-                let ii:[UInt8] = [0xaa,1,1]
-                isSending = true
                 isSended = true
                 isRunningAi = true
-                let (_,msg)=client.send(data:ii)
-                if msg == "socket not open"{
-                    isconnected = false
-                    self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                }else if msg == "send error" {
-                    isconnected = false
-                    self.presentViewController(alertresend!, animated: true, completion: nil)
-                }
-                isSending = false
+                sendpost("MODE",action1:1)
                 
             break
             
             case 3:
-                let ii:[UInt8] = [0xaa,1,2]
-                isSending = true
                 isSended = true
                 isRunningAi = true
-                let (_,msg)=client.send(data:ii)
-                if msg == "socket not open"{
-                    isconnected = false
-                    self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                }else if msg == "send error" {
-                    isconnected = false
-                    self.presentViewController(alertresend!, animated: true, completion: nil)
-                }
-                isSending = false
+                sendpost("MODE",action1:2)
             break
             
             case 4:
-                let ii:[UInt8] = [0xaa,1,3]
-                isSending = true
                 isSended = true
                 isRunningAi = true
-                let (_,msg)=client.send(data:ii)
-                if msg == "socket not open"{
-                    isconnected = false
-                    self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                }else if msg == "send error" {
-                    isconnected = false
-                    self.presentViewController(alertresend!, animated: true, completion: nil)
-                }
-                isSending = false
+                sendpost("MODE",action1:3)
             break
             default:break
         }
@@ -467,8 +430,13 @@ class ViewController: UIViewController {
     
     @IBAction func zhuwoqiye_btn(sender: AnyObject) {
         
-        sendpost(0x7710,action1:3,action2:3)
-        sendpost(0x5680,action1:3,action2:3)
+        
+        
+        if recieve[17] == 0 {
+            sendpost("ZHUWOQIYE",action1:1,action2:1)
+        } else {
+            sendpost("ZHUWOQIYE",action1:0,action2:0)
+        }
         /*
         0xFAF8 =XIAOMIKAIGUAN1-zhuwo
         0x1AD6 =XIAOMIKAIGUAN2-ciwo
@@ -519,15 +487,15 @@ class ViewController: UIViewController {
         
     }
  
-    func sendpost(id:NSNumber = 0,action1:NSNumber = 3,action2:NSNumber = 3)
+    func sendpost(id:NSString ,action1:NSNumber = 3,action2:NSNumber = 3)
     {
         print("send post！");
         isRunningAi = true
-        let urlString:String = "http://wangyangzhuji.imwork.net:8888"
+        let urlString:String = host_var!
         var url:NSURL!
         url = NSURL(string:urlString)
         let request = NSMutableURLRequest(URL:url)
-        let body = "score={\"devid\":\(id),\"type\":\"control_down\",\"state1\":\(action1),\"state2\":\(action2),\"state3\":\(action1)}"
+        let body = "score={\"name\":\"\(id)\",\"type\":\"control_down\",\"state1\":\(action1),\"state2\":\(action2),\"state3\":\(action1)}"
         print(body)
         //编码POST数据
         let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
@@ -544,7 +512,7 @@ class ViewController: UIViewController {
     {
         print("send heart！");
         isRunningAi = true
-        let urlString:String = "http://wangyangzhuji.imwork.net:8888"
+        let urlString:String = host_var!
         var url:NSURL!
         url = NSURL(string:urlString)
         let request = NSMutableURLRequest(URL:url)
@@ -569,7 +537,7 @@ class ViewController: UIViewController {
     
     func connection(connection: NSURLConnection, didReceiveData data: NSData)
     {
-        print("ReceiveData");
+        print("ReceiveData1");
         let datastring = NSString(data:data, encoding: NSUTF8StringEncoding)
         print(datastring)
         
@@ -583,31 +551,60 @@ class ViewController: UIViewController {
                 let id = obj.objectForKey("id") as! NSNumber
                 let type = obj.objectForKey("type") as! NSNumber
                 let status = obj.objectForKey("status") as! NSArray
+                let name = obj.objectForKey("name") as! NSString
                 print(id)
+                print(name)
                 print(type)
                 print(UInt8(status[0].intValue))
-                switch(id){
-                case 0x4E8A:
+                switch(name){
+                case "KETING_ID":
                     recieve[12] = UInt8(status[0].intValue)
                     break;
-                case 0xB358:
+                case "CANTING_ID":
                     recieve[13] = UInt8(status[0].intValue)
                     break;
-                case 0xBE8A:
+                case "CHUFANG_ID":
                     recieve[15] = UInt8(status[0].intValue)
                     break;
-                case 0x5680:
+                case "GUODAO_ID":
                     recieve[10] = UInt8(status[0].intValue)
                     recieve[16] = UInt8(status[1].intValue)
                     break;
-                case 0xE6B0	:
+                case "MENTING_ID"	:
                     recieve[14] = UInt8(status[0].intValue)
                     break;
-                case 0x7710:
+                case "ZHUWO_ID":
                     recieve[6] = UInt8(status[0].intValue)
                     break;
-                case 0x9590:
+                case "CIWO_ID":
                     recieve[8] = UInt8(status[0].intValue)
+                    break;
+                case "MODE":
+                    recieve[1] = UInt8(status[0].intValue)
+                    break;
+                case "ZHUWOQIYE":
+                    recieve[17] = UInt8(status[0].intValue)
+                    break;
+                case "CIWOQIYE":
+                    recieve[18] = UInt8(status[0].intValue)
+                    break;
+                 case "KETINGCHUANGLIAN":
+                    recieve[3] = UInt8(status[0].intValue)
+                    break;
+                case "ZHUWOCHUANGLIAN":
+                    recieve[4] = UInt8(status[0].intValue)
+                    break;
+                case "CIWOCHUANGLIAN":
+                    recieve[5] = UInt8(status[0].intValue)
+                    break;
+                case "ZHUWODENGLIANGDU":
+                    recieve[7] = UInt8(status[0].intValue)
+                    break;
+                case "CIWODENGLIANGDU":
+                    recieve[9] = UInt8(status[0].intValue)
+                    break;
+                case "CESUODENGLIANGDU":
+                    recieve[11] = UInt8(status[0].intValue)
                     break;
                 default:break;
                 }
@@ -707,15 +704,6 @@ class ViewController: UIViewController {
         }catch _ {
             dict = nil
         }
-  
-            
-
-        
-        
-        
-        
-        
-        
     }
     
     func connectionDidFinishLoading(connection: NSURLConnection)
@@ -731,10 +719,94 @@ class ViewController: UIViewController {
         print(error)
     }
     
-    
+    /*
+     序号
+     取值
+     说明
+     0
+     0xaa
+     帧头
+     
+     1
+     0~3
+     模式
+     
+     2
+     0~100
+     客厅纱帘
+     
+     3
+     0~100
+     客厅布帘
+     
+     4
+     0~100
+     主卧布帘
+     
+     5
+     0~100
+     次卧布帘
+     
+     6
+     0,1
+     主卧灯开关
+     
+     7
+     0~100
+     主卧灯亮度
+     
+     8
+     0,1
+     次卧灯开关
+     
+     9
+     0~100
+     次卧灯亮度
+     
+     10
+     0,1
+     厕所灯开关
+     
+     11
+     0~100
+     厕所灯亮度
+     
+     12
+     0,1
+     客厅灯开关
+     
+     13
+     0,1
+     餐厅灯开关
+     
+     14
+     0,1
+     门厅灯开关
+     
+     15
+     0,1
+     厨房灯开关
+     
+     16
+     0,1
+     过道灯开关
+     
+     17
+     0,1
+     主卧夜灯
+     
+     18
+     0,1
+     次卧夜灯
+ 
+ */
     @IBAction func ciwoqiye_btn(sender: AnyObject) {
-        sendpost(0x9590,action1:3,action2:3)
-        sendpost(0x5680,action1:3,action2:3)
+        if recieve[18] == 0 {
+            sendpost("CIWOQIYE",action1:1,action2:1)
+        } else {
+            sendpost("CIWOQIYE",action1:0,action2:0)
+        }
+
         /*
          0xFAF8 =XIAOMIKAIGUAN1-zhuwo
          0x1AD6 =XIAOMIKAIGUAN2-ciwo
@@ -857,7 +929,9 @@ func refresh(){
 
     
     @IBAction func cesuodengbtn(sender: AnyObject) {
-        sendpost(0x5680,action1:3,action2:2)
+        isSended = true
+        isRunningAi = true
+        sendpost("GUODAO_ID",action1:3,action2:2)
         /*
          0xFAF8 =XIAOMIKAIGUAN1-zhuwo
          0x1AD6 =XIAOMIKAIGUAN2-ciwo
@@ -874,7 +948,9 @@ func refresh(){
     }
     
     @IBAction func guodaodeng_btn(sender: AnyObject) {
-        sendpost(0x5680,action1:2,action2:3)
+        isSended = true
+        isRunningAi = true
+        sendpost("GUODAO_ID",action1:2,action2:3)
         /*
          0xFAF8 =XIAOMIKAIGUAN1-zhuwo
          0x1AD6 =XIAOMIKAIGUAN2-ciwo
@@ -891,7 +967,9 @@ func refresh(){
     }
     
     @IBAction func ciwodeng_btn(sender: AnyObject) {
-        sendpost(0x9590,action1:3,action2:3)
+        isSended = true
+        isRunningAi = true
+        sendpost("CIWO_ID",action1:3,action2:3)
         /*
          0xFAF8 =XIAOMIKAIGUAN1-zhuwo
          0x1AD6 =XIAOMIKAIGUAN2-ciwo
@@ -908,7 +986,9 @@ func refresh(){
     }
 
     @IBAction func zhuwodeng_btn(sender: AnyObject) {
-        sendpost(0x7710,action1:3,action2:3)
+        isSended = true
+        isRunningAi = true
+        sendpost("ZHUWO_ID",action1:3,action2:3)
         /*
          0xFAF8 =XIAOMIKAIGUAN1-zhuwo
          0x1AD6 =XIAOMIKAIGUAN2-ciwo
@@ -925,7 +1005,9 @@ func refresh(){
     }
     
     @IBAction func ketingdeng_btn(sender: AnyObject) {
-        sendpost(0x4E8A,action1:3,action2:3)
+        isSended = true
+        isRunningAi = true
+        sendpost("KETING_ID",action1:3,action2:3)
         /*
          0xFAF8 =XIAOMIKAIGUAN1-zhuwo
          0x1AD6 =XIAOMIKAIGUAN2-ciwo
@@ -943,7 +1025,9 @@ func refresh(){
     }
     
     @IBAction func cantingdeng_btn(sender: AnyObject) {
-        sendpost(0xB358,action1:3,action2:3)
+        isSended = true
+        isRunningAi = true
+        sendpost("CANTING_ID",action1:3,action2:3)
         /*
          0xFAF8 =XIAOMIKAIGUAN1-zhuwo
          0x1AD6 =XIAOMIKAIGUAN2-ciwo
@@ -961,7 +1045,9 @@ func refresh(){
     }
     
     @IBAction func mentingdeng_btn(sender: AnyObject) {
-        sendpost(0xE6B0,action1:3,action2:3)
+        isSended = true
+        isRunningAi = true
+        sendpost("MENTING_ID",action1:3,action2:3)
         /*
          0xFAF8 =XIAOMIKAIGUAN1-zhuwo
          0x1AD6 =XIAOMIKAIGUAN2-ciwo
@@ -979,7 +1065,9 @@ func refresh(){
     }
     
     @IBAction func chufangdeng_btn(sender: AnyObject) {
-        sendpost(0xBE8A,action1:3,action2:3)
+        isSended = true
+        isRunningAi = true
+        sendpost("CHUFANG_ID",action1:3,action2:3)
         /*
          0xFAF8 =XIAOMIKAIGUAN1-zhuwo
          0x1AD6 =XIAOMIKAIGUAN2-ciwo
@@ -998,78 +1086,51 @@ func refresh(){
     }
     
     @IBAction func ketingchuanglian_btn(sender: AnyObject) {
-        var ii:[UInt8] = [0xaa,4,100]
+        
         if recieve[3] < 50 {
-            ii = [0xaa,4,100]
+            sendpost("KETINGCHUANGLIAN_ID",action1:100)
 
         } else {
-            ii = [0xaa,4,0]
+            sendpost("KETINGCHUANGLIAN_ID",action1:0)
         }
         
-        //        print(str)
-        isSending = true
+        
+        
         isSended = true
         isRunningAi = true
-        let (_,msg)=client.send(data:ii)
         
-        if msg == "socket not open"{
-            isconnected = false
-            self.presentViewController(alertreconnect!, animated: true, completion: nil)
-        }else if msg == "send error" {
-            isconnected = false
-            self.presentViewController(alertresend!, animated: true, completion: nil)
-        }
-        isSending = false
     }
     
     @IBAction func zhuwochuanglian_btn(sender: AnyObject) {
-        var ii:[UInt8] = [0xaa,5,100]
+        
         if recieve[4] < 50 {
-            ii = [0xaa,5,100]
+            sendpost("ZHUWOCHUANGLIAN_ID",action1:100)
             
         } else {
-            ii = [0xaa,5,0]
+            sendpost("ZHUWOCHUANGLIAN_ID",action1:0)
         }
         
         //        print(str)
-        isSending = true
+        
         isSended = true
         isRunningAi = true
-        let (_,msg)=client.send(data:ii)
         
-        if msg == "socket not open"{
-            isconnected = false
-            self.presentViewController(alertreconnect!, animated: true, completion: nil)
-        }else if msg == "send error" {
-            isconnected = false
-            self.presentViewController(alertresend!, animated: true, completion: nil)
-        }
-        isSending = false
     }
     
     @IBAction func ciwochuanglian_btn(sender: AnyObject) {
-        var ii:[UInt8] = [0xaa,6,100]
+        
         if recieve[5] < 50 {
-            ii = [0xaa,6,100]
+            sendpost("CIWOCHUANGLIAN_ID",action1:100)
             
         } else {
-            ii = [0xaa,6,0]
+            sendpost("CIWOCHUANGLIAN_ID",action1:0)
         }
         
         //        print(str)
-        isSending = true
+
         isSended = true
         isRunningAi = true
-        let (_,msg)=client.send(data:ii)
         
-        if msg == "socket not open"{
-            isconnected = false
-            self.presentViewController(alertreconnect!, animated: true, completion: nil)
-        }else if msg == "send error" {
-            isconnected = false
-            self.presentViewController(alertresend!, animated: true, completion: nil)
-        }
-        isSending = false
     }
     
 }

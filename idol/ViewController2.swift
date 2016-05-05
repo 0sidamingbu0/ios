@@ -51,12 +51,7 @@ class ViewController2: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         isNeedRefresh2 = true
-        if !isconnected {
-            let(a,_) = client.connect(timeout:1)
-            if a {
-                isconnected = true
-            }
-        }
+
         if timer == nil {
             timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTimer:", userInfo: nil, repeats: true)
         }
@@ -215,7 +210,92 @@ class ViewController2: UIViewController {
         //print("updatetimer2")
     }
 
-    
+    func connection(connection: NSURLConnection, didReceiveData data: NSData)
+    {
+        print("ReceiveData2");
+        let datastring = NSString(data:data, encoding: NSUTF8StringEncoding)
+        print(datastring)
+        
+        let dict:NSDictionary?
+        do {
+            dict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+            
+            
+            let data1 = dict!["devices"] as? NSArray
+            for  obj in data1!{
+                let id = obj.objectForKey("id") as! NSNumber
+                let type = obj.objectForKey("type") as! NSNumber
+                let status = obj.objectForKey("status") as! NSArray
+                let name = obj.objectForKey("name") as! NSString
+                print(id)
+                print(name)
+                print(type)
+                print(UInt8(status[0].intValue))
+                switch(name){
+                case "KETING_ID":
+                    recieve[12] = UInt8(status[0].intValue)
+                    break;
+                case "CANTING_ID":
+                    recieve[13] = UInt8(status[0].intValue)
+                    break;
+                case "CHUFANG_ID":
+                    recieve[15] = UInt8(status[0].intValue)
+                    break;
+                case "GUODAO_ID":
+                    recieve[10] = UInt8(status[0].intValue)
+                    recieve[16] = UInt8(status[1].intValue)
+                    break;
+                case "MENTING_ID"	:
+                    recieve[14] = UInt8(status[0].intValue)
+                    break;
+                case "ZHUWO_ID":
+                    recieve[6] = UInt8(status[0].intValue)
+                    break;
+                case "CIWO_ID":
+                    recieve[8] = UInt8(status[0].intValue)
+                    break;
+                case "MODE":
+                    recieve[1] = UInt8(status[0].intValue)
+                    break;
+                case "ZHUWOQIYE":
+                    recieve[17] = UInt8(status[0].intValue)
+                    break;
+                case "CIWOQIYE":
+                    recieve[18] = UInt8(status[0].intValue)
+                    break;
+                case "KETINGCHUANGLIAN":
+                    recieve[3] = UInt8(status[0].intValue)
+                    break;
+                case "ZHUWOCHUANGLIAN":
+                    recieve[4] = UInt8(status[0].intValue)
+                    break;
+                case "CIWOCHUANGLIAN":
+                    recieve[5] = UInt8(status[0].intValue)
+                    break;
+                case "ZHUWODENGLIANGDU":
+                    recieve[7] = UInt8(status[0].intValue)
+                    break;
+                case "CIWODENGLIANGDU":
+                    recieve[9] = UInt8(status[0].intValue)
+                    break;
+                case "CESUODENGLIANGDU":
+                    recieve[11] = UInt8(status[0].intValue)
+                    break;
+                default:break;
+                }
+                
+                
+            }
+            
+            isRecieved = true
+            isNeedRefresh1 = true
+            isNeedRefresh2 = true
+            isNeedRefresh3 = true
+            isRunningAi = false
+        }catch _ {
+            dict = nil
+        }
+    }
 
     var resend = UIAlertAction(title: "重发", style: UIAlertActionStyle.Default){
         (action: UIAlertAction!) -> Void in
@@ -235,6 +315,30 @@ class ViewController2: UIViewController {
             }
         }
     }
+    
+    func sendpost(id:NSString ,action1:NSNumber = 3,action2:NSNumber = 3)
+    {
+        print("send post！");
+        isRunningAi = true
+        let urlString:String = host_var!
+        var url:NSURL!
+        url = NSURL(string:urlString)
+        let request = NSMutableURLRequest(URL:url)
+        let body = "score={\"name\":\"\(id)\",\"type\":\"control_down\",\"state1\":\(action1),\"state2\":\(action2),\"state3\":\(action1)}"
+        print(body)
+        //编码POST数据
+        let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+        //保用 POST 提交
+        request.HTTPMethod = "POST"
+        request.HTTPBody = postData
+        var conn:NSURLConnection!
+        conn = NSURLConnection(request: request,delegate: self)
+        conn.start()
+        print(conn)
+        
+    }
+    
+    
     var reconnect = UIAlertAction(title: "重连", style: UIAlertActionStyle.Default){
         (action: UIAlertAction!) -> Void in
         if !isconnected {
@@ -267,130 +371,54 @@ class ViewController2: UIViewController {
     //=====slider======
     @IBAction func ketingshalian_slider(sender: AnyObject) {
         let slider:UISlider = sender as! UISlider
-        let ii:[UInt8] = [0xaa,3,UInt8(slider.value*100)]
-        //        print(str)
-        isSending = true
         isSended = true
         isRunningAi = true
-        let (_,msg)=client.send(data:ii)
-        if msg == "socket not open"{
-            isconnected = false
-            self.presentViewController(alertreconnect!, animated: true, completion: nil)
-        }else if msg == "send error" {
-            isconnected = false
-            self.presentViewController(alertresend!, animated: true, completion: nil)
-        }
-        isSending = false
+        sendpost("KETINGSHALIAN_ID",action1:(slider.value*100))
     }
    
 
     @IBAction func ketingbulian_slider(sender: AnyObject) {
         let slider:UISlider = sender as! UISlider
-        let ii:[UInt8] = [0xaa,4,UInt8(slider.value*100)]
         //        print(str)
-        isSending = true
         isSended = true
         isRunningAi = true
-        let (_,msg)=client.send(data:ii)
-        if msg == "socket not open"{
-            isconnected = false
-            self.presentViewController(alertreconnect!, animated: true, completion: nil)
-        }else if msg == "send error" {
-            isconnected = false
-            self.presentViewController(alertresend!, animated: true, completion: nil)
-        }
-        isSending = false
+        sendpost("KETINGCHUANGLIAN_ID",action1:(slider.value*100))
     }
 
     @IBAction func zhuwochuanglian_slider(sender: AnyObject) {
         let slider:UISlider = sender as! UISlider
-        let ii:[UInt8] = [0xaa,5,UInt8(slider.value*100)]
-        //        print(str)
-        isSending = true
         isSended = true
         isRunningAi = true
-        let (_,msg)=client.send(data:ii)
-        if msg == "socket not open"{
-            isconnected = false
-            self.presentViewController(alertreconnect!, animated: true, completion: nil)
-        }else if msg == "send error" {
-            isconnected = false
-            self.presentViewController(alertresend!, animated: true, completion: nil)
-        }
-        isSending = false
+        sendpost("ZHUWOCHUANGLIAN_ID",action1:(slider.value*100))
     }
     
     
     @IBAction func ciwochuanglian_slider(sender: AnyObject) {
         let slider:UISlider = sender as! UISlider
-        let ii:[UInt8] = [0xaa,6,UInt8(slider.value*100)]
-        //        print(str)
-        isSending = true
         isSended = true
         isRunningAi = true
-        let (_,msg)=client.send(data:ii)
-        if msg == "socket not open"{
-            isconnected = false
-            self.presentViewController(alertreconnect!, animated: true, completion: nil)
-        }else if msg == "send error" {
-            isconnected = false
-            self.presentViewController(alertresend!, animated: true, completion: nil)
-        }
-        isSending = false
+        sendpost("CIWOCHUANGLIAN_ID",action1:(slider.value*100))
     }
     
     @IBAction func zhuwodeng_slider(sender: AnyObject) {
         let slider:UISlider = sender as! UISlider
-        let ii:[UInt8] = [0xaa,8,UInt8(slider.value*100)]
-        //        print(str)
-        isSending = true
         isSended = true
         isRunningAi = true
-        let (_,msg)=client.send(data:ii)
-        if msg == "socket not open"{
-            isconnected = false
-            self.presentViewController(alertreconnect!, animated: true, completion: nil)
-        }else if msg == "send error" {
-            isconnected = false
-            self.presentViewController(alertresend!, animated: true, completion: nil)
-        }
-        isSending = false
+        sendpost("ZHUWODENGLIANGDU",action1:(slider.value*100))
     }
     
     @IBAction func ciwodeng_slider(sender: AnyObject) {
         let slider:UISlider = sender as! UISlider
-        let ii:[UInt8] = [0xaa,10,UInt8(slider.value*100)]
-        //        print(str)
-        isSending = true
         isSended = true
         isRunningAi = true
-        let (_,msg)=client.send(data:ii)
-        if msg == "socket not open"{
-            isconnected = false
-            self.presentViewController(alertreconnect!, animated: true, completion: nil)
-        }else if msg == "send error" {
-            isconnected = false
-            self.presentViewController(alertresend!, animated: true, completion: nil)
-        }
-        isSending = false
+        sendpost("CIWODENGLIANGDU",action1:(slider.value*100))
     }
     
     @IBAction func cesuodeng_slider(sender: AnyObject) {
         let slider:UISlider = sender as! UISlider
-        let ii:[UInt8] = [0xaa,12,UInt8(slider.value*100)]
-        //        print(str)
-        isSending = true
         isSended = true
         isRunningAi = true
-        let (_,msg)=client.send(data:ii)
-        if msg == "socket not open"{
-            isconnected = false
-            self.presentViewController(alertreconnect!, animated: true, completion: nil)
-        }else if msg == "send error" {
-            isconnected = false
-            self.presentViewController(alertresend!, animated: true, completion: nil)
-        }
-        isSending = false
+        sendpost("CESUODENGLAINGDU",action1:(slider.value*100))
     }
     
     //=====slider======
@@ -400,273 +428,91 @@ class ViewController2: UIViewController {
         //self.presentViewController(alertresend!, animated: true, completion: nil)
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,3,100]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                ketingshalianbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                ketingshalianbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("KETINGSHALIAN_ID",action1:100)
         }else{
-            let ii:[UInt8] = [0xaa,3,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                ketingshalianbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                ketingshalianbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("KETINGSHALIAN_ID",action1:0)
         }
     }
     
     @IBAction func ketingbulian_btn(sender: AnyObject) {
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,4,100]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                ketingbulianbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                ketingbulianbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("KETINGCHUANGLIAN_ID",action1:100)
         }else{
-            let ii:[UInt8] = [0xaa,4,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                ketingbulianbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                ketingbulianbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("KETINGCHUANGLIAN_ID",action1:0)
         }
     }
     
     @IBAction func zhuwochaunglian_btn(sender: AnyObject) {
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,5,100]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                zhuwochuanglianbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                zhuwochuanglianbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("ZHUWOCHUANGLIAN_ID",action1:100)
         }else{
-            let ii:[UInt8] = [0xaa,5,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                zhuwochuanglianbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                zhuwochuanglianbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("ZHUWOCHUANGLIAN_ID",action1:0)
         }
     }
     
     @IBAction func ciwochuanglian_btn(sender: AnyObject) {
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,6,100]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                ciwochuanglianbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                ciwochuanglianbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("CIWOCHAUNGLIAN_ID",action1:100)
         }else{
-            let ii:[UInt8] = [0xaa,6,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                ciwochuanglianbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                ciwochuanglianbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("CIWOCHAUNGLIAN_ID",action1:0)
         }
     }
     
     @IBAction func zhuwodeng_btn(sender: AnyObject) {
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,7,1]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                zhuwodengbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                zhuwodengbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("ZHUWO_ID",action1:1)
         }else{
-            let ii:[UInt8] = [0xaa,7,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                zhuwodengbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                zhuwodengbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("ZHUWO_ID",action1:0)
         }
     }
     
     @IBAction func ciwodeng_btn(sender: AnyObject) {
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,9,1]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                ciwodengbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                ciwodengbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("CIWO_ID",action1:1)
         }else{
-            let ii:[UInt8] = [0xaa,9,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                ciwodengbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                ciwodengbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("CIWO_ID",action1:0)
         }
     }
     
     @IBAction func cesuodeng_btn(sender: AnyObject) {
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,11,1]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                cesuodengbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                cesuodengbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("GUODAO_ID",action1:1,action2:2)
         }else{
-            let ii:[UInt8] = [0xaa,11,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                cesuodengbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                cesuodengbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("GUODAO_ID",action1:0,action2:2)
         }
     }
     
@@ -674,198 +520,66 @@ class ViewController2: UIViewController {
     @IBAction func ketingdeng_btn(sender: AnyObject) {
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,13,1]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                ketingdengbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                ketingdengbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("KETING_ID",action1:1)
         }else{
-            let ii:[UInt8] = [0xaa,13,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                ketingdengbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                ketingdengbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("KETING_ID",action1:0)
         }
     }
     
     @IBAction func cantingdeng_btn(sender: AnyObject) {
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,14,1]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                cantingdengbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                cantingdengbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("CANTING_ID",action1:1)
         }else{
-            let ii:[UInt8] = [0xaa,14,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                cantingdengbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                cantingdengbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("CANTING_ID",action1:0)
         }
     }
     
     @IBAction func mentingdeng_btn(sender: AnyObject) {
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,15,1]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                mentingdengbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                mentingdengbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("MENTING_ID",action1:1)
         }else{
-            let ii:[UInt8] = [0xaa,15,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                mentingdengbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                mentingdengbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("MENTING_ID",action1:0)
         }
     }
     
     @IBAction func chufangdeng_btn(sender: AnyObject) {
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,16,1]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                chufangdengbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                chufangdengbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("CHUFANG_ID",action1:1)
         }else{
-            let ii:[UInt8] = [0xaa,16,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                chufangdengbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                chufangdengbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("CHUFANG_ID",action1:0)
         }
     }
-    
     @IBAction func guodaodeng_btn(sender: AnyObject) {
         let btn:UISwitch = sender as! UISwitch
         if btn.on {
-            let ii:[UInt8] = [0xaa,17,1]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                guodaodengbtn_ol.setOn(false, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                guodaodengbtn_ol.setOn(false, animated: true)
-            }
-            isSending = false
+            sendpost("GUODAO_ID",action1:2,action2:1)
         }else{
-            let ii:[UInt8] = [0xaa,17,0]
-            //        print(str)
-            isSending = true
             isSended = true
             isRunningAi = true
-            let (_,msg)=client.send(data:ii)
-            if msg == "socket not open"{
-                isconnected = false
-                self.presentViewController(alertreconnect!, animated: true, completion: nil)
-                guodaodengbtn_ol.setOn(true, animated: true)
-            }else if msg == "send error" {
-                isconnected = false
-                self.presentViewController(alertresend!, animated: true, completion: nil)
-                guodaodengbtn_ol.setOn(true, animated: true)
-            }
-            isSending = false
+            sendpost("GUODAO_ID",action1:2,action2:0)
         }
     }
-    
     
     /*
     // MARK: - Navigation
