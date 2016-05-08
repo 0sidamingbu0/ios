@@ -55,7 +55,7 @@ class ViewController3:UIViewController {
         }
         if isNeedRefresh3 {
             isNeedRefresh3 = false
-            jieshou_txt.text = "\(recieve[0]) \(recieve[1]) \(recieve[2]) \(recieve[3]) \(recieve[4]) \(recieve[5]) \(recieve[6]) \(recieve[7]) \(recieve[8]) \(recieve[9]) \(recieve[10]) \(recieve[11]) \(recieve[12]) \(recieve[13]) \(recieve[14]) \(recieve[15]) \(recieve[16]) \(recieve[17]) "
+            
         }
         oldIsRunningAI = !isRunningAi
     }
@@ -157,7 +157,7 @@ class ViewController3:UIViewController {
         alertresend?.addAction(resend)
         alertresend?.addAction(cancel)
         
-        
+        sendheart()
         
         //获取管理的数据上下文 对象
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -222,7 +222,8 @@ class ViewController3:UIViewController {
         print("ReceiveData3");
         let datastring = NSString(data:data, encoding: NSUTF8StringEncoding)
         print(datastring)
-        
+        let strr = datastring!.UTF8String
+        //jieshou_txt.text = strr
         let dict:NSDictionary?
         do {
             dict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
@@ -303,7 +304,27 @@ class ViewController3:UIViewController {
             dict = nil
         }
     }
-    
+    func sendheart()
+    {
+        print("send heart！");
+        isRunningAi = true
+        let urlString:String = host_var!
+        var url:NSURL!
+        url = NSURL(string:urlString)
+        let request = NSMutableURLRequest(URL:url)
+        let body = "{\"type\":\"heart\"}"
+        print(body)
+        //编码POST数据
+        let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+        //保用 POST 提交
+        request.HTTPMethod = "POST"
+        request.HTTPBody = postData
+        var conn:NSURLConnection!
+        conn = NSURLConnection(request: request,delegate: self)
+        conn.start()
+        print(conn)
+        
+    }
     func sendpost(id:NSString ,action1:NSNumber = 3,action2:NSNumber = 3)
     {
         print("send post！");
@@ -313,7 +334,7 @@ class ViewController3:UIViewController {
         var url:NSURL!
         url = NSURL(string:urlString)
         let request = NSMutableURLRequest(URL:url)
-        let body = "score={\"name\":\"\(id)\",\"type\":\"control_down\",\"state1\":\(action1),\"state2\":\(action2),\"state3\":\(action1)}"
+        let body = "{\"name\":\"\(id)\",\"type\":\"control_down\",\"state1\":\(action1),\"state2\":\(action2),\"state3\":\(action1)}"
         print(body)
         //编码POST数据
         let postData = body.dataUsingEncoding(NSASCIIStringEncoding)

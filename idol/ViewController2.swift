@@ -76,7 +76,7 @@ class ViewController2: UIViewController {
         alertresend = UIAlertController(title: "", message: "数据发送失败！", preferredStyle: UIAlertControllerStyle.Alert)
         alertresend?.addAction(resend)
         alertresend?.addAction(cancel)
-        
+        sendheart()
         
         if timer == nil {
             timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTimer:", userInfo: nil, repeats: true)
@@ -315,7 +315,27 @@ class ViewController2: UIViewController {
             }
         }
     }
-    
+    func sendheart()
+    {
+        print("send heart！");
+        isRunningAi = true
+        let urlString:String = host_var!
+        var url:NSURL!
+        url = NSURL(string:urlString)
+        let request = NSMutableURLRequest(URL:url)
+        let body = "{\"type\":\"heart\"}"
+        print(body)
+        //编码POST数据
+        let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+        //保用 POST 提交
+        request.HTTPMethod = "POST"
+        request.HTTPBody = postData
+        var conn:NSURLConnection!
+        conn = NSURLConnection(request: request,delegate: self)
+        conn.start()
+        print(conn)
+        
+    }
     func sendpost(id:NSString ,action1:NSNumber = 3,action2:NSNumber = 3)
     {
         print("send post！");
@@ -324,7 +344,7 @@ class ViewController2: UIViewController {
         var url:NSURL!
         url = NSURL(string:urlString)
         let request = NSMutableURLRequest(URL:url)
-        let body = "score={\"name\":\"\(id)\",\"type\":\"control_down\",\"state1\":\(action1),\"state2\":\(action2),\"state3\":\(action1)}"
+        let body = "{\"name\":\"\(id)\",\"type\":\"control_down\",\"state1\":\(action1),\"state2\":\(action2),\"state3\":\(action1)}"
         print(body)
         //编码POST数据
         let postData = body.dataUsingEncoding(NSASCIIStringEncoding)

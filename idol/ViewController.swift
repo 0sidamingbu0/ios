@@ -495,7 +495,7 @@ class ViewController: UIViewController {
         var url:NSURL!
         url = NSURL(string:urlString)
         let request = NSMutableURLRequest(URL:url)
-        let body = "score={\"name\":\"\(id)\",\"type\":\"control_down\",\"state1\":\(action1),\"state2\":\(action2),\"state3\":\(action1)}"
+        let body = "{\"name\":\"\(id)\",\"type\":\"control_down\",\"state1\":\(action1),\"state2\":\(action2),\"state3\":\(action1)}"
         print(body)
         //编码POST数据
         let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
@@ -516,7 +516,7 @@ class ViewController: UIViewController {
         var url:NSURL!
         url = NSURL(string:urlString)
         let request = NSMutableURLRequest(URL:url)
-        let body = "score={\"type\":\"heart\"}"
+        let body = "{\"type\":\"heart\"}"
         print(body)
         //编码POST数据
         let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
